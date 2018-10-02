@@ -60,7 +60,7 @@ filename = input("Choose file: ")
 
 try:
     with open(filename, "r") as myfile:
-        data = myfile.read(100).replace('\n', '')
+        data = myfile.read().replace('\n', '')
 except IOError:  # FileNotFoundError 
     print("File not found: {}".format(filename))
     sys.exit()
