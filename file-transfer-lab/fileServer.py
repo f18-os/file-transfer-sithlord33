@@ -1,7 +1,7 @@
 #! /usr/bin/env python3
-
+import sys, re, socket
 sys.path.append("../lib")       # for params
-import sys, re, socket, params
+import params
 
 switchesVarDefaults = (
     (('-l', '--listenPort') ,'listenPort', 50001),
@@ -35,5 +35,5 @@ while True:
     if debug: print("rec'd: ", payload)
     if not payload:
         break
-    payload += b"!"             # make emphatic!
+    print(payload)
     framedSend(sock, payload, debug)

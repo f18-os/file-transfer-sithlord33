@@ -57,11 +57,10 @@ if s is None:
     sys.exit(1)
 
 
-print("sending hello world")
-framedSend(s, b"hello world", debug)
+with open("speech.txt", "r") as myfile:
+    data = myfile.read().replace('\n', '')
+print("sending file")
+framedSend(s, data.encode(), debug)
 print("received:", framedReceive(s, debug))
 
-print("sending hello world")
-framedSend(s, b"hello world", debug)
-print("received:", framedReceive(s, debug))
 
