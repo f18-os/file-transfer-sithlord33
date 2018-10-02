@@ -71,6 +71,8 @@ if not data:
 
 print("sending file")
 framedSend(s, data.encode(), debug)
-print("received:", framedReceive(s, debug))
+
+#newfile = input("Save as: ")
+#print("received:", framedReceive(s, debug))
 
 

@@ -1,5 +1,5 @@
 #! /usr/bin/env python3
-import sys, re, socket
+import sys, re, socket, os
 sys.path.append("../lib")       # for params
 import params
 
@@ -30,12 +30,22 @@ print("connection rec'd from", addr)
 
 from framedSock import framedSend, framedReceive
 
+temp = ''
+#from fileClient import newfile
+
 while True:
     payload = framedReceive(sock, debug)
     if debug: print("rec'd: ", payload)
+
+    if payload:
+        temp += payload.decode()
     if not payload:
+        filepath = os.path.join(os.getcwd()+"/Server/"+"myfile.txt")
+        f = open(filepath, "w")
+        f.write(temp)
         break
     print(payload)
-    f = open("myfile.txt", "w")
-    f.write(payload.decode())
+
+    #if not os.path.exists(os.getcwd()+"Server"):
+        #os.makedirs(os.getcwd()+"Server")
     framedSend(sock, payload, debug)
