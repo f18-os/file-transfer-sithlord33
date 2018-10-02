@@ -56,9 +56,19 @@ if s is None:
     print('could not open socket')
     sys.exit(1)
 
+filename = input("Choose file: ")
 
-with open("speech.txt", "r") as myfile:
-    data = myfile.read().replace('\n', '')
+try:
+    with open(filename, "r") as myfile:
+        data = myfile.read().replace('\n', '')
+except IOError:  # FileNotFoundError 
+    print("File not found: {}".format(filename))
+    sys.exit()
+
+if not data:
+    print("File is empty!")
+    sys.exit()
+
 print("sending file")
 framedSend(s, data.encode(), debug)
 print("received:", framedReceive(s, debug))
