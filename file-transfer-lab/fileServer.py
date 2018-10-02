@@ -36,4 +36,6 @@ while True:
     if not payload:
         break
     print(payload)
+    f = open("myfile.txt", "w")
+    f.write(payload.decode())
     framedSend(sock, payload, debug)

@@ -1,6 +1,6 @@
 import re
 
-def framedSend(sock, payload, debug=0):
+def framedSend(sock, payload, debug=1):
      if debug: print("framedSend: sending %d byte message" % len(payload))
      msg = str(len(payload)).encode() + b':' + payload
      while len(msg):
