@@ -2,9 +2,11 @@
   "ExpandedNodes": [
     "",
     "\\file-transfer-lab",
+    "\\file-transfer-lab\\Server",
     "\\framed-echo",
     "\\simple-echo",
     "\\stammer-proxy"
   ],
+  "SelectedNode": "\\file-transfer-lab\\fileClient.py",
   "PreviewInSolutionExplorer": false
 }

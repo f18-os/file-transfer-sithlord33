@@ -23,29 +23,39 @@ lsock.bind(bindAddr)
 lsock.listen(5)
 print("listening on:", bindAddr)
 
-sock, addr = lsock.accept()
+i = 1
+while (i < 10):   # listen to max 10 clients
 
-print("connection rec'd from", addr)
+    sock, addr = lsock.accept()
+    child_pid = os.fork()
+
+    if child_pid==0:
+        print("connection rec'd from client " + str(i) + ": " + str(addr) + "\n")
 
 
-from framedSock import framedSend, framedReceive
+        from framedSock import framedSend, framedReceive
 
-temp = ''
-#from fileClient import newfile
+        temp = ''
+        #from fileClient import newfile
 
-while True:
-    payload = framedReceive(sock, debug)
-    if debug: print("rec'd: ", payload)
+        while True:
+            payload = framedReceive(sock, debug)
+            if debug: print("rec'd: ", payload)
 
-    if payload:
-        temp += payload.decode()
-    if not payload:
-        filepath = os.path.join(os.getcwd()+"/Server/"+"myfile.txt")
-        f = open(filepath, "w")
-        f.write(temp)
-        break
-    print(payload)
+            if payload:
+                temp += payload.decode()
+            if not payload:
+                filepath = os.path.join(os.getcwd()+"/Server/"+"myfile.txt")
+                f = open(filepath, "w")
+                f.write(temp)
+                break
+            print(payload)
 
-    #if not os.path.exists(os.getcwd()+"Server"):
-        #os.makedirs(os.getcwd()+"Server")
-    framedSend(sock, payload, debug)
+            #if not os.path.exists(os.getcwd()+"Server"):
+                #os.makedirs(os.getcwd()+"Server")
+            framedSend(sock, payload, debug)
+            break
+    else: 
+        i+=1
+
+
