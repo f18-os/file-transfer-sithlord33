@@ -24,7 +24,7 @@ lsock.listen(5)
 print("listening on:", bindAddr)
 
 i = 1
-while (i < 10):   # listen to max 10 clients
+while (True):   # handle to multiple clients
 
     sock, addr = lsock.accept()
     child_pid = os.fork()
