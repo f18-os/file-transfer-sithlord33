@@ -29,11 +29,10 @@ while (True):   # handle to multiple clients
     sock, addr = lsock.accept()
     child_pid = os.fork()
 
-    if child_pid==0:
+    from framedSock import framedSend, framedReceive
+
+    if not child_pid:
         print("connection rec'd from client " + str(i) + ": " + str(addr) + "\n")
-
-
-        from framedSock import framedSend, framedReceive
 
         temp = ''
         #from fileClient import newfile
