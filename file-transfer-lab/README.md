@@ -11,5 +11,5 @@
 *  `framedSock.py` holds the common code used in the client and server including framed send and receive.
 
 To run the file transfer program, open at least two shells (one for server and one for client). First run `./fileServer.py` on the first shell. The server will be listening for a client. On the second shell, run `./fileClient.py`. The client will prompt you to send a file. If the file is non existent the client will let you know. To run multiple clients, open more shells and run the client command. To specify port number, open another shell and run `./stammerProxy.py` after the Server and before the Client.
-
+To specify port in the Server, type `./fileServer.py -l localhost:(port_#)` in the client `./fileClient.py -s localhost:(port_#)`.
 
